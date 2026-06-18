@@ -1,0 +1,400 @@
+/* --- Main Dashboard Theme Styles --- */
+:root {
+    --bg-main: #0b1329;
+    --bg-surface: #1c2541;
+    --bg-surface-elevated: #3a506b;
+    --border-color: #1e293b;
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    
+    --primary-indigo: #6366f1;
+    --primary-indigo-hover: #4f46e5;
+    
+    /* Semantic Status Indicators */
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-danger: #ef4444;
+    
+    --radius-lg: 12px;
+    --radius-md: 8px;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.5;
+    padding: 2rem 1rem;
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto 2rem auto;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.brand h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+}
+
+.badge-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    background-color: var(--bg-surface-elevated);
+    color: var(--text-primary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-left: 0.5rem;
+}
+
+.project-selector-zone select {
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    outline: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.dashboard-layout {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* --- Analytics Panel --- */
+.analytics-panel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.metric-card {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.metric-card h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: 800;
+    font-family: var(--font-mono);
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+}
+
+.metric-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* --- Dynamic State Overrides applied by Javascript Engine --- */
+.metric-card.state-success { border-left: 4px solid var(--color-success); }
+.metric-card.state-warning { border-left: 4px solid var(--color-warning); }
+.metric-card.state-danger { border-left: 4px solid var(--color-danger); }
+
+.text-danger { color: var(--color-danger); }
+.text-warning { color: var(--color-warning); }
+
+/* --- Early Warning Banner System --- */
+.warning-banner-system {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-md);
+    background-color: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.warning-banner-system.banner-alert {
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    animation: pulseBorder 2s infinite alternate;
+}
+
+.banner-status-icon {
+    font-size: 1.5rem;
+}
+
+.banner-text h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.15rem;
+}
+
+.banner-text p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* --- Workspace split grid layout --- */
+.workspace-grid {
+    display: grid;
+    grid-template-columns: 450px 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+    .workspace-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.logging-panel, .ledger-panel {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.panel-header h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+/* --- Form Styles for Resource Logging --- */
+#resource-log-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.form-group input[type="number"],
+.form-group textarea,
+.ledger-controls select {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 0.65rem 0.85rem;
+    border-radius: var(--radius-md);
+    font-family: inherit;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-indigo);
+}
+
+.field-help {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* --- Custom Specialized Radio Card Layouts --- */
+.radio-card-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.radio-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-main);
+    padding: 0.75rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.radio-card:hover {
+    border-color: var(--bg-surface-elevated);
+}
+
+.radio-card input[type="radio"] {
+    margin-top: 0.2rem;
+    accent-color: var(--primary-indigo);
+}
+
+.radio-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.radio-content strong {
+    font-size: 0.85rem;
+    color: var(--text-primary);
+}
+
+.radio-content span {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+/* --- Radio Checked Visual Highlights --- */
+.radio-card:has(input[type="radio"]:checked) {
+    border-color: var(--primary-indigo);
+    background-color: rgba(99, 102, 241, 0.05);
+}
+
+.btn-primary-action {
+    background-color: var(--primary-indigo);
+    color: var(--text-primary);
+    border: none;
+    padding: 0.85rem;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary-action:hover {
+    background-color: var(--primary-indigo-hover);
+}
+
+.btn-primary-action:disabled {
+    background-color: var(--bg-surface-elevated);
+    color: var(--text-muted);
+    cursor: not-allowed;
+}
+
+/* --- Table Views for Ledger & Logs --- */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.ledger-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.ledger-table th {
+    background-color: var(--bg-main);
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.ledger-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    vertical-align: middle;
+}
+
+.ledger-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.01);
+}
+
+.text-right { text-align: right; }
+.font-mono { font-family: var(--font-mono); }
+
+.table-empty-message {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 3rem !important;
+    font-style: italic;
+}
+
+/* --- Row-Level Inline Badges --- */
+.status-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.status-badge.badge-success { background-color: rgba(16, 185, 129, 0.15); color: var(--color-success); }
+.status-badge.badge-danger { background-color: rgba(239, 68, 68, 0.15); color: var(--color-danger); }
+.status-badge.badge-warning { background-color: rgba(245, 158, 11, 0.15); color: var(--color-warning); }
+
+/* Injected by JS engine to flag over-hour task leakage thresholds */
+.leakage-warning-row {
+    background-color: rgba(239, 68, 68, 0.06);
+    border-left: 4px solid var(--color-danger);
+}
+
+.ledger-table tbody tr.leakage-warning-row:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* --- Animation Keyframes --- */
+@keyframes pulseBorder {
+    0% { 
+        border-color: rgba(239, 68, 68, 0.3); 
+        box-shadow: 0 0 0 0px rgba(239, 68, 68, 0.1);
+    }
+    100% { 
+        border-color: rgba(239, 68, 68, 0.8); 
+        box-shadow: 0 0 12px 2px rgba(239, 68, 68, 0.15);
+    }
+}
